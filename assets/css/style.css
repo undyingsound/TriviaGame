@@ -1,6 +1,44 @@
 body{
-    background: black;
-    
+    background-color: black;
+}
+
+.btn{
+    margin: 0 auto;
+
+
+}
+
+.container.intro{
+ margin-right:25px;
+}
+
+.mainBody{
+    background-image: url(../imgs/background.png);
+}
+
+.mainBody span, .question {
+    color:#660011;
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.h1 , .welcome{
+    text-align: center;
+    font-family: 'Shadows Into Light', cursive;
+    color:#660011;
+}
+
+.nav .span{
+text-align:center;
+
 }
 
 
+.container.photos{
+border-radius: 25px;
+border-top: 3px solid #660011;
+border-bottom: 3px solid #660011;
+height: 504px;
+width: 900px;
+}
