@@ -9,7 +9,10 @@ body{
 }
 
 .container.intro{
- margin-right:25px;
+ display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 .mainBody{
@@ -17,7 +20,7 @@ body{
 }
 
 .mainBody span, .question {
-    color:#660011;
+    color:whitesmoke;
     font-size: 50px;
     text-align: center;
     font-family: 'Shadows Into Light', cursive;
@@ -34,6 +37,16 @@ text-align:center;
 
 }
 
+.timer{
+    border: 1px solid #660011;
+    color:#660011;
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Shadows Into Light', cursive;
+    width:10%;
+
+
+}
 
 .container.photos{
 border-radius: 25px;
@@ -41,4 +54,16 @@ border-top: 3px solid #660011;
 border-bottom: 3px solid #660011;
 height: 504px;
 width: 900px;
+}
+
+.navbar{
+    padding-bottom:0;
+    height:45%;
+    margin-left:100px;
+}
+
+#nextButton{
+    display:none;
+
+
 }

@@ -1,56 +1,192 @@
-let currentQuestion = 0;
-let score = 0;
+// Questions
+
+let question1 = {
+    question: "Who was the killer in the the first 'Friday the 13th' movie?",
+    choices: ['A drugged up camp counselor',
+        'Jasons Mother',
+        'Jason Voorhees',
+        'Tommy Jarvis'],
+    answer: 'Jasons Mother',
+    condition: [false, true, false, false]
+};
+
+let question2 = {
+    question: 'Where are famous "Exorcist Steps" located?',
+    choices: ['Washington, D.C',
+        'Baltimore, MD',
+        'Philidelphia, PA',
+        'New York, NY'],
+    answer: 'Washington, D.C',
+    condition: [true, false, false, false]
+
+};
+
+let question3 = {
+    question: '"Hellraiser" is based on what novel?',
+    choices: ['Straight to Hell',
+        'The Dark Lords Revenge',
+        'The Hellbound Heart',
+        'The Box to Hell'],
+    answer: 'The Hellbound Heart',
+    condition: [false, false, true, false]
+
+};
+
+let question4 = {
+    question: 'True or False: The words "Elm Street" are not spoken at all during the movie, "Nightmare on Elm Street."',
+    choices: ['True',
+        'False'],
+    answer: 'True',
+    condition: [true, false]
+
+};
+
+let question5 = {
+    question: 'When the movie "IT" was released, it was shipped to cinemas under the code name:',
+    choices: ['Pennywise: The Dancing Clown',
+        'Are you afraid of the dark?',
+        'Clown Makeup and Other Accessories',
+        'Pound Foolish'],
+    answer: 'Pound Foolish',
+    condition: [false, false, false, true]
+
+};
+
+//Question to Array
+let totalQuestions = [question1, question2, question3, question4, question5];
+//Right Answers
+let rightAnswers = 0;
+//Wrong Answers
+let wrongAnswers = 0;
+let questionIndex = 0;
+//Answer Variable
+let userAnswer;
+
+$(document).ready(function () {
+
+    
+
+    //Display Question
+    function giveQuestions(questionSelect) {
+        //Reset the Timer
+        timer.reset();
+        //Show Question
+        $('#question').html(totalQuestions[questionSelect].question);
+        //Display Choices
+        $('#opt1').text(totalQuestions[questionSelect].choices[0]).show();
+        $('#opt2').text(totalQuestions[questionSelect].choices[1]).show();
+        $('#opt3').text(totalQuestions[questionSelect].choices[2]).show();
+        $('#opt4').text(totalQuestions[questionSelect].choices[3]).show();
+        console.log('hello');
+    }
+
+    //Start when Pumpkin is clicked
+    function startGame() {
+        giveQuestions(questionIndex);
+        timer.start();
+            
+        
+    }
+
+    //Add a point if Answer is Correct
+    function right() {
+        rightAnswers++;
+    };
+
+    //Add to Wrong Count
+    function wrong() {
+        wrongAnswers++;
+
+    };
+
+    //Timer Variable
+    let timer = {
+        time: 20,
+        //Time Reset
+        reset: function () {
+            this.time = 20;
+            //Show Time
+            $('.timer').html('<div>' + this.time);
+        },
+        //Countdown
+        start: function () {
+            counter = setInterval(timer.count, 1000);
+        },
+
+        stop: function () {
+            clearInterval(counter);
+        },
+
+        count: function () {
+            timer.time--;
+            console.log(timer.time);
+
+            if (timer.time >= 0) {
+                $('.timer').html('<div>' + timer.time);
+            } else {
+                //Go to next question if Time runs out
+                questionIndex++;
+                wrong();
+                timer.reset();
+                if (questionIndex < totalQuestions) {
+                    loadQuestion(questionIndex);
+                } else {
+                    $('.choice').hide();
+                    
+                }
+            }
+        }
+    }
+
+    //User's click
+    startGame();
+    $('.btn').on('click', function () {
+        console.log($(this.id));
+        console.log('check');
+        if (this.id === 'opt1') {
+            userAnswer = 'opt1';
+        } else if (this.id === 'opt2') {
+            userAnswer = 'opt2';
+        } else if (this.id === 'opt3') {
+            userAnswer = 'opt3';
+        } else if (this.id === 'opt4') {
+            userAnswer = 'opt4';
+        }
+
+        if ((userAnswer === 'opt1') && totalQuestions[questionIndex].condition[0] === true) {
+            right();
+        } else if (userAnswer === 'opt1') {
+            wrong();
+        } if ((userAnswer === 'opt2') && totalQuestions[questionIndex].condition[1] === true) {
+            right();
+        } else if (userAnswer === 'opt2') {
+            wrong();
+        } if ((userAnswer === 'opt3') && totalQuestions[questionIndex].condition[2] === true) {
+            right();
+        } else if (userAnswer === 'opt3') {
+            wrong();
+        } if ((userAnswer === 'opt4') && totalQuestions[questionIndex].condition[3] === true) {
+            right();
+        } else if (userAnswer === 'opt4') {
+            wrong();
+        }
+
+        $('#question').text('');
+        $('#opt1').text('');
+        $('#opt2').text('');
+        $('#opt3').text('');
+        $('#opt4').text('');
+        questionIndex++;
+        if (questionIndex < totalQuestions.length) {
+            giveQuestions(questionIndex);
+        } else {
+            $('.btn').hide();
+            $('.timer').hide();
+            alert(' You got ' + rightAnswers + " correct!");
+            $('#nextButton').show();
+        }
+    })
+})
 
 
-
-
-
-$('.carousel').carousel({
-    interval: false
-}) 
-
-
-let questions = [{
-    "Q": "Who was the killer in the the first 'Friday the 13th' movie?",
-    "1": "A drugged up camp counselor",
-    "2": "Jason's Mother",
-    "3": "Jason Voorhees",
-    "4": "Tommy Jarvis",
-    "A": "2"
-},
-{
-    "Q": "Where are famous 'Exorcist Steps' located?",
-    "1": "Washington, D.C",
-    "2": "Baltimore, MD",
-    "3": "Philidelphia, PA",
-    "4": "New York, NY",
-    "A": "1"
-},
-{
-    "Q": "'Hellraiser' is based on what novel?",
-    "1": "Straight to Hell",
-    "2": "The Dark Lord's Revenge",
-    "3": "The Hellbound Heart",
-    "4": "The Box to Hell",
-    "A": "3"
-},
-
-{
-    "Q": "True or False: The words 'Elm Street' are not spoken at all during the movie, 'Nightmare on Elm Street.'",
-    "1": "True",
-    "2": "False",
-    "A": "1"
-},
-
-{
-    "Q": "When the movie 'IT' was released, it was shipped to cinemas under the code name:",
-    "1": "Pennywise: The Dancing Clown",
-    "2": "Are you afraid of the dark?",
-    "3": "Clown Makeup and Other Accessories",
-    "4": "Pound Foolish",
-    "A": "4"
-}
-]
-
-let container = document.getElementById("questionBox");
 
