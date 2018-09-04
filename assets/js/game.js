@@ -33,11 +33,13 @@ let question3 = {
 };
 
 let question4 = {
-    question: 'True or False: The words "Elm Street" are not spoken at all during the movie, "Nightmare on Elm Street."',
-    choices: ['True',
-        'False'],
-    answer: 'True',
-    condition: [true, false]
+    question: 'Who was Cravens first choice to play killer Freddy Krueger?',
+    choices: ['David Warner',
+        'Johnny Depp',
+        'Charlie Sheen',
+        'Jackie Earle Haley'],
+    answer: 'David Warner',
+    condition: [true, false, false, false]
 
 };
 
@@ -101,10 +103,10 @@ $(document).ready(function () {
 
     //Timer Variable
     let timer = {
-        time: 20,
+        time: 10,
         //Time Reset
         reset: function () {
-            this.time = 20;
+            this.time = 10;
             //Show Time
             $('.timer').html('<div>' + this.time);
         },
