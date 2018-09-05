@@ -66,7 +66,7 @@ let userAnswer;
 
 $(document).ready(function () {
 
-    
+
 
     //Display Question
     function giveQuestions(questionSelect) {
@@ -86,8 +86,8 @@ $(document).ready(function () {
     function startGame() {
         giveQuestions(questionIndex);
         timer.start();
-            
-        
+
+
     }
 
     //Add a point if Answer is Correct
@@ -134,7 +134,7 @@ $(document).ready(function () {
                     loadQuestion(questionIndex);
                 } else {
                     $('.choice').hide();
-                    
+
                 }
             }
         }
