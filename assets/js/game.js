@@ -99,6 +99,7 @@ $(document).ready(function () {
 
     };
 
+
     //Timer Variable
     let timer = {
         time: 10, //
@@ -106,7 +107,7 @@ $(document).ready(function () {
         reset: function () {
             this.time = 10;
             $('.timer').html('<div>' + this.time);
-            console.log('reset');
+            
         },
         //Counter
         start: function () {
@@ -125,9 +126,11 @@ $(document).ready(function () {
                 $('.timer').html(timer.time);
             } else if (timer.time <= 0) {
                 //Timer Runs Out
+                alert('Time is up! The correct answer is ' + totalQuestions.answer) ;
                 questionIndex++;
                 wrong();
                 timer.reset();
+                
                 if (questionIndex < totalQuestions.length) {
                     giveQuestions(questionIndex);
                 } else {
@@ -159,20 +162,28 @@ $(document).ready(function () {
 
         if ((userAnswer === 'opt1') && totalQuestions[questionIndex].condition[0] === true) {
             right();
+            alert("correct!");
         } else if (userAnswer === 'opt1') {
             wrong();
+            alert("incorrect!");
         } if ((userAnswer === 'opt2') && totalQuestions[questionIndex].condition[1] === true) {
             right();
+            alert("correct!");
         } else if (userAnswer === 'opt2') {
             wrong();
+            alert("incorrect!");
         } if ((userAnswer === 'opt3') && totalQuestions[questionIndex].condition[2] === true) {
             right();
+            alert("correct!");
         } else if (userAnswer === 'opt3') {
             wrong();
+            alert("incorrect!");
         } if ((userAnswer === 'opt4') && totalQuestions[questionIndex].condition[3] === true) {
             right();
+            alert("correct!");
         } else if (userAnswer === 'opt4') {
             wrong();
+            alert("incorrect!");
         }
 
         $('#question').text('');
@@ -186,7 +197,7 @@ $(document).ready(function () {
         } else {
             $('.btn').hide();
             $('.timer').hide();
-            alert(' You got ' + rightAnswers + " correct!");
+            alert(' You got ' + rightAnswers + ' correct and ' + wrongAnswers + ' incorrect!');
             $('#nextButton').show();
         }
     })
