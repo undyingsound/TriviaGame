@@ -135,7 +135,7 @@ $(document).ready(function () {
                 if (questionIndex < totalQuestions.length) {
                     giveQuestions(questionIndex);
                 } else {
-                    timer.stop();
+                    timer.reset();
                     $('.btn').hide();
                     $('.timer').hide();
                     $('.question').hide();
