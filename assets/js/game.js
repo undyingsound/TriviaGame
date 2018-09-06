@@ -63,9 +63,12 @@ let wrongAnswers = 0;
 let questionIndex = 0;
 //Answer Variable
 let userAnswer;
-let mySong = document.getElementById('themeMusic');
+
+
+
 $(document).ready(function () {
     //Hides Music Controls
+
     $('#themeMusic').hide();
     $('.carousel').carousel({
         interval: false
@@ -84,12 +87,11 @@ $(document).ready(function () {
 
     }
 
-    //Start when Pumpkin is clicked
+    //Start Timer
     function startGame() {
-       giveQuestions(questionIndex);
-        timer.start();
-        
-        }
+            giveQuestions(questionIndex);
+            timer.start();
+    }
 
     //Add a point if Answer is Correct
     function right() {
@@ -148,6 +150,9 @@ $(document).ready(function () {
             }
         }
     }
+
+   
+
 
     //User's click
     startGame();
