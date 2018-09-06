@@ -11,7 +11,7 @@ let question1 = {
 };
 
 let question2 = {
-    question: 'Where are famous "Exorcist Steps" located?',
+    question: 'Where are the famous "Exorcist Steps" located?',
     choices: ['Washington, D.C',
         'Baltimore, MD',
         'Philidelphia, PA',
@@ -33,7 +33,7 @@ let question3 = {
 };
 
 let question4 = {
-    question: 'Who was Cravens first choice to play killer Freddy Krueger?',
+    question: 'Who was Wes Cravens first choice to play killer Freddy Krueger?',
     choices: ['David Warner',
         'Johnny Depp',
         'Charlie Sheen',
@@ -63,12 +63,10 @@ let wrongAnswers = 0;
 let questionIndex = 0;
 //Answer Variable
 let userAnswer;
-let audio = new Audio("theme.mp3");
+let mySong = document.getElementById('themeMusic');
 $(document).ready(function () {
 
     
-
-
     //Display Question
     function giveQuestions(questionSelect) {
         //Reset the Timer
@@ -80,19 +78,17 @@ $(document).ready(function () {
         $('#opt2').text(totalQuestions[questionSelect].choices[1]).show();
         $('#opt3').text(totalQuestions[questionSelect].choices[2]).show();
         $('#opt4').text(totalQuestions[questionSelect].choices[3]).show();
-        
+
     }
 
     //Start when Pumpkin is clicked
     function startGame() {
-        giveQuestions(questionIndex);
+       giveQuestions(questionIndex);
         timer.start();
-        audio.play(); 
+        
+        }
 
-
-    }
-
-   //Add a point if Answer is Correct
+    //Add a point if Answer is Correct
     function right() {
         rightAnswers++;
     };
@@ -109,7 +105,7 @@ $(document).ready(function () {
         //Time Reset
         reset: function () {
             this.time = 10;
-            $('.timer').html('<div>' + this.time); 
+            $('.timer').html('<div>' + this.time);
             console.log('reset');
         },
         //Counter
@@ -123,7 +119,7 @@ $(document).ready(function () {
 
         count: function () {
             timer.time--;
-            
+
 
             if (timer.time >= 0) {
                 $('.timer').html(timer.time);
@@ -141,7 +137,7 @@ $(document).ready(function () {
                     $('.question').hide();
                     alert(' You got ' + rightAnswers + " correct!");
                     $('#nextButton').show();
-                    
+
                 }
             }
         }
@@ -149,6 +145,7 @@ $(document).ready(function () {
 
     //User's click
     startGame();
+    
     $('.btn').on('click', function () {
         if (this.id === 'opt1') {
             userAnswer = 'opt1';
