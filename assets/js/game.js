@@ -63,9 +63,10 @@ let wrongAnswers = 0;
 let questionIndex = 0;
 //Answer Variable
 let userAnswer;
-
+let audio = new Audio("theme.mp3");
 $(document).ready(function () {
 
+    
 
 
     //Display Question
@@ -79,18 +80,19 @@ $(document).ready(function () {
         $('#opt2').text(totalQuestions[questionSelect].choices[1]).show();
         $('#opt3').text(totalQuestions[questionSelect].choices[2]).show();
         $('#opt4').text(totalQuestions[questionSelect].choices[3]).show();
-        console.log('hello');
+        
     }
 
     //Start when Pumpkin is clicked
     function startGame() {
         giveQuestions(questionIndex);
         timer.start();
+        audio.play(); 
 
 
     }
 
-    //Add a point if Answer is Correct
+   //Add a point if Answer is Correct
     function right() {
         rightAnswers++;
     };
@@ -103,38 +105,43 @@ $(document).ready(function () {
 
     //Timer Variable
     let timer = {
-        time: 10,
+        time: 10, //
         //Time Reset
         reset: function () {
             this.time = 10;
-            //Show Time
-            $('.timer').html('<div>' + this.time);
+            $('.timer').html('<div>' + this.time); 
+            console.log('reset');
         },
-        //Countdown
+        //Counter
         start: function () {
-            counter = setInterval(timer.count, 1000);
+            counter = setInterval(timer.count, 1000); //sets interval
         },
-
+        //Clear Interval
         stop: function () {
             clearInterval(counter);
         },
 
         count: function () {
             timer.time--;
-            console.log(timer.time);
+            
 
             if (timer.time >= 0) {
-                $('.timer').html('<div>' + timer.time);
-            } else {
-                //Go to next question if Time runs out
+                $('.timer').html(timer.time);
+            } else if (timer.time <= 0) {
+                //Timer Runs Out
                 questionIndex++;
                 wrong();
                 timer.reset();
-                if (questionIndex < totalQuestions) {
-                    loadQuestion(questionIndex);
+                if (questionIndex < totalQuestions.length) {
+                    giveQuestions(questionIndex);
                 } else {
-                    $('.choice').hide();
-
+                    timer.stop();
+                    $('.btn').hide();
+                    $('.timer').hide();
+                    $('.question').hide();
+                    alert(' You got ' + rightAnswers + " correct!");
+                    $('#nextButton').show();
+                    
                 }
             }
         }
@@ -143,8 +150,6 @@ $(document).ready(function () {
     //User's click
     startGame();
     $('.btn').on('click', function () {
-        console.log($(this.id));
-        console.log('check');
         if (this.id === 'opt1') {
             userAnswer = 'opt1';
         } else if (this.id === 'opt2') {
