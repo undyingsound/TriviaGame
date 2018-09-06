@@ -67,7 +67,9 @@ let mySong = document.getElementById('themeMusic');
 $(document).ready(function () {
     //Hides Music Controls
     $('#themeMusic').hide();
-    
+    $('.carousel').carousel({
+        interval: false
+      })
     //Display Question
     function giveQuestions(questionSelect) {
         //Reset the Timer
@@ -186,7 +188,7 @@ $(document).ready(function () {
             wrong();
             alert("Incorrect! The correct answer is " + totalQuestions[questionIndex].answer);
         }
-
+        $('.carousel').carousel('next');
         $('#question').text('');
         $('#opt1').text('');
         $('#opt2').text('');
