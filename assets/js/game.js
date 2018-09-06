@@ -65,7 +65,7 @@ let questionIndex = 0;
 let userAnswer;
 let mySong = document.getElementById('themeMusic');
 $(document).ready(function () {
-
+    $('#themeMusic').hide();
     
     //Display Question
     function giveQuestions(questionSelect) {
@@ -126,7 +126,7 @@ $(document).ready(function () {
                 $('.timer').html(timer.time);
             } else if (timer.time <= 0) {
                 //Timer Runs Out
-                alert('Time is up! The correct answer is ' + totalQuestions.answer) ;
+                alert('Time is up! The correct answer is ' + totalQuestions[questionIndex].answer) ;
                 questionIndex++;
                 wrong();
                 timer.reset();
@@ -162,28 +162,28 @@ $(document).ready(function () {
 
         if ((userAnswer === 'opt1') && totalQuestions[questionIndex].condition[0] === true) {
             right();
-            alert("correct!");
+            alert("Correct!");
         } else if (userAnswer === 'opt1') {
             wrong();
-            alert("incorrect!");
+            alert("Incorrect! The correct answer is " + totalQuestions[questionIndex].answer);
         } if ((userAnswer === 'opt2') && totalQuestions[questionIndex].condition[1] === true) {
             right();
-            alert("correct!");
+            alert("Correct!");
         } else if (userAnswer === 'opt2') {
             wrong();
-            alert("incorrect!");
+            alert("Incorrect! The correct answer is " + totalQuestions[questionIndex].answer);
         } if ((userAnswer === 'opt3') && totalQuestions[questionIndex].condition[2] === true) {
             right();
-            alert("correct!");
+            alert("Correct!");
         } else if (userAnswer === 'opt3') {
             wrong();
-            alert("incorrect!");
+            alert("Incorrect! The correct answer is " + totalQuestions[questionIndex].answer);
         } if ((userAnswer === 'opt4') && totalQuestions[questionIndex].condition[3] === true) {
             right();
-            alert("correct!");
+            alert("Correct!");
         } else if (userAnswer === 'opt4') {
             wrong();
-            alert("incorrect!");
+            alert("Incorrect! The correct answer is " + totalQuestions[questionIndex].answer);
         }
 
         $('#question').text('');
