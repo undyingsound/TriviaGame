@@ -65,6 +65,7 @@ let questionIndex = 0;
 let userAnswer;
 let mySong = document.getElementById('themeMusic');
 $(document).ready(function () {
+    //Hides Music Controls
     $('#themeMusic').hide();
     
     //Display Question
